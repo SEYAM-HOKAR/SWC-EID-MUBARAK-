@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Eid Mubarak</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --yellow:#ffd54f;
+      --yellow2:#ffea94;
+      --dark:#050505;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      font-family:'Poppins',sans-serif;
+      background:
+      radial-gradient(circle at top,#3b3200 0%,#120f00 45%,#000 100%);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+    }
+
+    /* Animated Background Glow */
+    body::before{
+      content:'';
+      position:absolute;
+      width:700px;
+      height:700px;
+      background:radial-gradient(circle,var(--yellow),transparent 70%);
+      filter:blur(120px);
+      opacity:0.18;
+      animation:rotateGlow 12s linear infinite;
+    }
+
+    @keyframes rotateGlow{
+      0%{
+        transform:rotate(0deg) scale(1);
+      }
+      50%{
+        transform:rotate(180deg) scale(1.2);
+      }
+      100%{
+        transform:rotate(360deg) scale(1);
+      }
+    }
+
+    /* Floating Particles */
+    .particles span{
+      position:absolute;
+      width:8px;
+      height:8px;
+      background:var(--yellow2);
+      border-radius:50%;
+      box-shadow:0 0 20px var(--yellow);
+      animation:float 10s linear infinite;
+      opacity:0.7;
+    }
+
+    .particles span:nth-child(1){
+      left:10%;
+      animation-delay:0s;
+      top:90%;
+    }
+
+    .particles span:nth-child(2){
+      left:30%;
+      animation-delay:2s;
+      top:100%;
+    }
+
+    .particles span:nth-child(3){
+      left:50%;
+      animation-delay:4s;
+      top:95%;
+    }
+
+    .particles span:nth-child(4){
+      left:70%;
+      animation-delay:6s;
+      top:100%;
+    }
+
+    .particles span:nth-child(5){
+      left:90%;
+      animation-delay:8s;
+      top:92%;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0) scale(0);
+        opacity:0;
+      }
+      20%{
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-110vh) scale(1.4);
+        opacity:0;
+      }
+    }
+
+    /* Main Card */
+    .card{
+      width:90%;
+      max-width:700px;
+      padding:60px 40px;
+      border-radius:35px;
+      position:relative;
+      text-align:center;
+
+      background:rgba(255,255,255,0.07);
+      backdrop-filter:blur(20px);
+
+      border:1px solid rgba(255,255,255,0.1);
+
+      box-shadow:
+      0 0 40px rgba(255,215,64,0.3),
+      inset 0 0 25px rgba(255,255,255,0.05),
+      0 20px 50px rgba(0,0,0,0.8);
+
+      transform-style:preserve-3d;
+      animation:cardFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes cardFloat{
+      0%,100%{
+        transform:translateY(0px) rotateX(0deg);
+      }
+      50%{
+        transform:translateY(-15px) rotateX(4deg);
+      }
+    }
+
+    /* 3D Border Glow */
+    .card::before{
+      content:'';
+      position:absolute;
+      inset:-2px;
+      border-radius:35px;
+      padding:2px;
+      background:linear-gradient(
+        45deg,
+        #fff1a6,
+        #ffd54f,
+        #ffb300,
+        #fff1a6
+      );
+
+      -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+
+      animation:borderRotate 6s linear infinite;
+    }
+
+    @keyframes borderRotate{
+      100%{
+        filter:hue-rotate(360deg);
+      }
+    }
+
+    .arabic{
+      font-family:'Amiri',serif;
+      color:var(--yellow2);
+      font-size:1.4rem;
+      letter-spacing:3px;
+      margin-bottom:20px;
+
+      text-shadow:
+      0 0 10px rgba(255,213,79,0.7),
+      0 0 30px rgba(255,213,79,0.4);
+    }
+
+    h1{
+      font-family:'Cinzel',serif;
+      font-size:4rem;
+      color:white;
+      line-height:1.1;
+      text-transform:uppercase;
+
+      text-shadow:
+      0 5px 15px rgba(0,0,0,0.8),
+      0 0 25px rgba(255,213,79,0.5);
+    }
+
+    h1 span{
+      display:block;
+      color:var(--yellow);
+      font-size:5rem;
+
+      text-shadow:
+      0 0 15px rgba(255,213,79,0.9),
+      0 0 40px rgba(255,213,79,0.7),
+      0 0 80px rgba(255,213,79,0.5);
+    }
+
+    .line{
+      width:180px;
+      height:2px;
+      margin:30px auto;
+      background:linear-gradient(
+        to right,
+        transparent,
+        var(--yellow),
+        transparent
+      );
+
+      box-shadow:0 0 15px var(--yellow);
+    }
+
+    .text{
+      color:#eee;
+      font-size:1.1rem;
+      line-height:1.9;
+      letter-spacing:1px;
+    }
+
+    /* Creator Name */
+    .creator{
+      font-size:0.78rem;
+      font-weight:600;
+      letter-spacing:4px;
+      margin-bottom:12px;
+
+      color:#ffd54f;
+
+      text-transform:uppercase;
+
+      text-shadow:
+      0 0 8px rgba(255,213,79,0.9),
+      0 0 20px rgba(255,213,79,0.8),
+      0 0 40px rgba(255,213,79,0.5);
+
+      animation:creatorGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes creatorGlow{
+      0%,100%{
+        opacity:1;
+        transform:scale(1);
+      }
+
+      50%{
+        opacity:0.8;
+        transform:scale(1.05);
+      }
+    }
+
+    .footer{
+      margin-top:25px;
+      color:var(--yellow2);
+      font-size:0.95rem;
+      letter-spacing:2px;
+    }
+
+    /* Moon */
+    .moon{
+      position:absolute;
+      top:-70px;
+      right:-50px;
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background:radial-gradient(circle,#fff7cc,#ffd54f);
+
+      box-shadow:
+      0 0 40px #ffd54f,
+      0 0 100px rgba(255,213,79,0.8);
+
+      overflow:hidden;
+    }
+
+    .moon::after{
+      content:'';
+      position:absolute;
+      top:10px;
+      left:35px;
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      background:#0d0a00;
+    }
+
+    /* Responsive */
+    @media(max-width:768px){
+
+      h1{
+        font-size:2.8rem;
+      }
+
+      h1 span{
+        font-size:3.5rem;
+      }
+
+      .card{
+        padding:45px 25px;
+      }
+
+      .moon{
+        width:110px;
+        height:110px;
+      }
+
+      .moon::after{
+        width:100px;
+        height:100px;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source id="music-source" src="" type="audio/mpeg">
+  </audio>
+
+  <script>
+
+    /*
+    =========================================
+    VOCAROO / MUSIC LINK SYSTEM
+    =========================================
+
+    STEP 1:
+    Niche tomar Vocaroo direct mp3 link boshao
+
+    Example:
+    https://media.vocaroo.com/mp3/xxxxxxxx
+
+    =========================================
+    */
+
+    const musicLink = "https://voca.ro/17nWH2lDUm3o";
+
+
+
+    /*
+    =========================================
+    AUTO LOAD MUSIC
+    =========================================
+    */
+
+    const audio = document.getElementById("bg-music");
+    const source = document.getElementById("music-source");
+
+    source.src = musicLink;
+
+    audio.load();
+
+    // Browser autoplay block korle click korlei play hobe
+    document.body.addEventListener("click", () => {
+      audio.play();
+    });
+
+  </script>
+
+  <!-- Floating Particles -->
+  <div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card">
+
+    <div class="moon"></div>
+
+    <div class="arabic">
+      عيد الأضحى مبارك
+    </div>
+
+    <h1>
+      Eid Al-Adha
+      <span>Mubarak</span>
+    </h1>
+
+    <div class="line"></div>
+
+    <p class="text">
+      May Allah fill your life with happiness,
+      peace, success and endless blessings.
+      <br><br>
+      Wishing you and your family a beautiful
+      Eid celebration.
+    </p>
+
+    <!-- Footer -->
+    <div class="footer">
+
+      <!-- Custom Name -->
+      <div class="creator">
+        STREAMER WITH CREATOR
+      </div>
+
+      ✦ 1447 Hijri ✦
+    </div>
+
+  </div>
+
+</body>
+</html>
